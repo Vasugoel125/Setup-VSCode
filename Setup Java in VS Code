@@ -1,0 +1,73 @@
+Steps to setup the Java in the VS Code:- 
+
+1. First create the folder in which you are going to store all the java codes.
+2. Now add two files in the VS code with names as "input.txt" and "output.txt".
+3. Now we have to download the extension or plugin in the VS code and the name of the plugin is java extension - by microsoft.
+4. Now go to the terminals from the menu bar and select the configure task.
+5. Select the create task.json file option from the menu. 
+6. Select the other option after that.
+7. Now delete the pre-written template in that task.json file and over-write the below provided code there. 
+
+Note:- I have provided the code for both windows as well as mac users both have different code so please provide the correct json code inside the task.json file.
+
+For mac users:- 
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile and run",
+            "type": "shell",
+            "command": "javac ${file} && java ${fileBasenameNoExtension} < input.txt > output.txt",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
+
+
+For Window users:- 
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile and run",
+            "type": "shell",
+            "command": "",
+            "args": [
+                "java",
+                "${relativeFile}",
+                "<",
+                "input.txt",
+                ">",
+                "output.txt"
+            ],
+            "presentation": {
+                "reveal": "never"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "owner": "py",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        }
+    ]
+}
+
